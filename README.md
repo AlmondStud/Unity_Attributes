@@ -1,4 +1,12 @@
 # Attribute
+[Min - Max Slider]()
+
+- Vector2, Vector2Int에 붙이는 최대,최소 값 슬라이더
+- Range 어트리뷰트와 중복 사용 시 Range 어트리뷰트의 최대, 최소 값을 이용
+
+![image](https://github.com/AlmondStud/Unity_Attributes/assets/26320361/79aed6bc-b59e-41d6-9ebf-fc774b7d4fcd)
+![image](https://github.com/AlmondStud/Unity_Attributes/assets/26320361/942c6c30-6f1f-4e68-b918-c3dac97070ad)
+
 [Serialized Property](https://seunghus.tistory.com/101)
 
 - 아래 bool toggle, float property를 포함하는 어트리뷰트
