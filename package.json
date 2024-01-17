@@ -1,0 +1,15 @@
+{
+  "name": "com.almond.attributes",
+  "version": "0.0.1",
+  "displayName": "Almond's attributes",
+  "description": "This is attributes for unity",
+  "keywords": [
+    "almond",
+    "attribute",
+    "attributes"
+  ],
+  "author": {
+    "name": "Almond",
+    "email": "gooldare@naver.com"
+  }
+}
