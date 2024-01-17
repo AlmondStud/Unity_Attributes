@@ -26,12 +26,24 @@ namespace Almond {
 				min = rangeAttribute.min;
 				max = rangeAttribute.max;
 			}
+			if(min > max) {
+				var temp = min;
+				min = max;
+				max = temp;
+			}
+
+			EditorGUILayout.BeginVertical();
 			EditorGUILayout.BeginHorizontal();
 			if(targetProperty.FieldType == typeof(Vector2)) {
 				var currentValue = (Vector2)targetProperty.GetValue(target);
 				var temp = currentValue;
 				EditorGUILayout.MinMaxSlider(label, ref temp.x, ref temp.y, min, max);
 				temp = EditorGUILayout.Vector2Field("", temp, GUILayout.Width(150));
+				temp.x = Mathf.Clamp(temp.x, min, max);
+				temp.y = Mathf.Clamp(temp.y, min, max);
+
+				if(temp.x > temp.y)
+					temp.x = temp.y;
 				targetProperty.SetValue(target, temp);
 			}
 			else {
@@ -40,10 +52,19 @@ namespace Almond {
 				EditorGUILayout.MinMaxSlider(label, ref temp.x, ref temp.y, min, max);
 				var vector2Int = new Vector2Int((int)temp.x, (int)temp.y);
 				vector2Int = EditorGUILayout.Vector2IntField("", vector2Int, GUILayout.Width(150));
+				vector2Int.x = Mathf.Clamp(vector2Int.x, (int)min, (int)max);
+				vector2Int.y = Mathf.Clamp(vector2Int.y, (int)min, (int)max);
+
+				if(vector2Int.x > vector2Int.y)
+					vector2Int.x = vector2Int.y;
 				targetProperty.SetValue(target, vector2Int);
 			}
-
 			EditorGUILayout.EndHorizontal();
+			var rightAlign = new GUIStyle();
+			rightAlign.alignment = TextAnchor.MiddleRight;
+			rightAlign.normal.textColor = Color.gray;
+			EditorGUILayout.LabelField($"Range : {min} ~ {max}", rightAlign);
+			EditorGUILayout.EndVertical();
 		}
 	}
 #endif
